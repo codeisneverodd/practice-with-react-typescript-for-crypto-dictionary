@@ -10,7 +10,7 @@
     - [Make Skeleton Site](#make-skeleton-site)
         - [Result of Skeleton](#result-of-skeleton)
 
-    - [Color the skeletons](#color-the skeletons)
+    - [Color the skeletons](#color-the-skeletons)
         - [Result of Coloring](#result-of-coloring)
 
     - [Deploy](#deploy)
