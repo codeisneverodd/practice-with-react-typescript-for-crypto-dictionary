@@ -1,4 +1,4 @@
-# Coin Tracker
+# Coin Dictionary
 
 ## Table of Contents
 
