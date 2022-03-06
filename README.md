@@ -18,7 +18,8 @@
 
 ## You can check result
 
-[Here: Coin Dictionary](https://codeisneverodd.github.io/practice-with-react-typescript-for-crypto-dictionary/)
+
+[Here: ![favicon-32x32](https://user-images.githubusercontent.com/54318460/156914742-2680d7bf-16d0-411b-8b5a-b99aef135b63.png)](https://codeisneverodd.github.io/practice-with-react-typescript-for-crypto-dictionary/)
 
 ## Languages
 
