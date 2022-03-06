@@ -8,8 +8,3 @@ declare module 'styled-components' {
         bgColor: string;
     }
 }
-
-declare module "*.png" {
-    const value: any;
-    export default value;
-}
