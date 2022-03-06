@@ -1,6 +1,7 @@
 import ApexChart from "react-apexcharts";
 import {useQuery} from "react-query";
 import {fetchHistory} from "../api";
+import {Header} from "../styles/styles";
 
 interface IHistory {
     "time_open": "2019-01-01T00:00:00Z",
@@ -18,17 +19,20 @@ interface IChart {
 }
 
 function Chart({coinId}: IChart) {
-    const {isLoading, data} = useQuery<IHistory[]>(["history", coinId], () => fetchHistory(coinId))
+    const {
+        isLoading,
+        data
+    } = useQuery<IHistory[]>(["history", coinId], () => fetchHistory(coinId), {refetchInterval: 5000})
     return (
         <>
-            {isLoading ? <h1>Chart Loading..</h1>
+            {isLoading ? <Header>Chart Loading..</Header>
                 :
                 <ApexChart
                     type="line"
                     series={[
                         {
-                            name: "Closed Price",
-                            data: data?.map((price) => price.close.toFixed(3)),
+                            name: "Price",
+                            data: data?.map((price) => price.close),
                         },
                     ]}
                     options={{
@@ -55,6 +59,18 @@ function Chart({coinId}: IChart) {
                             axisBorder: {show: false},
                             axisTicks: {show: false},
                             labels: {show: false},
+                            type: "datetime",
+                            categories: data?.map((price) => price.time_close),
+                        },
+                        fill: {
+                            type: "gradient",
+                            gradient: {gradientToColors: ["#0be881"], stops: [0, 100]},
+                        },
+                        colors: ["#0fbcf9"],
+                        tooltip: {
+                            y: {
+                                formatter: (value) => `$${value.toFixed(2)}`,
+                            },
                         },
                     }}
                 />

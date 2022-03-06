@@ -1,8 +1,11 @@
-import {Link, Route, Routes, useParams} from "react-router-dom";
+import {Link, Route, Routes, useLocation, useParams} from "react-router-dom";
 import {useQuery} from "react-query";
 import {fetchInfo, fetchTickers} from "../api";
 import Chart from "./Chart";
 import coin from "../components/Coin";
+import styled from "styled-components";
+import backImg from '../img/back.png';
+import {Back, Header} from "../styles/styles";
 
 interface ITickers {
     "id": "btc-bitcoin",
@@ -11,7 +14,7 @@ interface ITickers {
     "rank": 1,
     "circulating_supply": 18974775,
     "total_supply": 18974775,
-    "max_supply": 21000000,
+    "max_supply": number,
     "beta_value": 0.898366,
     "first_data_at": "2010-07-17T00:00:00Z",
     "last_updated": "2022-03-05T04:16:09Z",
@@ -185,9 +188,9 @@ interface IInfo {
     "message": "",
     "open_source": true,
     "started_at": "2017-07-15T00:00:00Z",
-    "development_status": "Working product",
+    "development_status": string,
     "hardware_wallet": true,
-    "proof_type": "Byzantine Fault Tolerance",
+    "proof_type": string,
     "org_structure": "Centralized",
     "hash_algorithm": "Tendermint (BFT)",
     "links": {
@@ -278,57 +281,149 @@ interface IInfo {
     "last_data_at": "2022-03-05T05:45:00Z"
 }
 
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+const CoinImg = styled.img`
+  display: block;
+  width: 92px;
+  height: 92px;
+  margin: 20px auto;
+`
+const CoinName = styled.span`
+  font-size: 37px;
+  text-align: center;
+`
+const ContentWrapper = styled.div`
+  display: flex;
+  width: 332px;
+  padding: 20px;
+  margin: 10px auto;
+  justify-content: center;
+  column-gap: 10px;
+  background-color: #00000050;
+  border-radius: 15px;
+`
+const ContentBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 155px;
+  row-gap: 10px;
+`
+const Content = styled.div<{ fontSize: string }>`
+  font-size: ${props => props.fontSize};
+  text-align: center;
+`
+const Tabs = styled.div`
+  display: flex;
+  margin: 10px auto;
+  justify-content: center;
+  column-gap: 30px;
+
+`
+const Tab = styled.span<{ isTapped: boolean }>`
+  display: flex;
+  width: 161px;
+  height: 44px;
+  border: 1px solid white;
+  border-radius: 70px;
+  font-size: 23px;
+  align-items: center;
+  justify-content: center;
+  color: ${props => props.isTapped ? '#000000' : 'inherit'};
+  background-color: ${props => props.isTapped ? '#FFFFFF' : '#FFFFFF16'};
+`
+
 function Detail() {
     const {coinId} = useParams()
     const {
         isLoading: loadingTickers,
         data: detail
-    } = useQuery<ITickers>(["tickers", coinId], () => fetchTickers(coinId))
+    } = useQuery<ITickers>(["detail", coinId], () => fetchTickers(coinId), {refetchInterval: 5000})
     const {isLoading: loadingInfo, data: info} = useQuery<IInfo>(["info", coinId], () => fetchInfo(coinId))
     const loading = loadingTickers || loadingInfo
+    const currentLocation = useLocation();
     return (
-        <>
-            {loading ? <h1>Loading Details....</h1>
+        <Wrapper>
+            {loading ? <Header>Loading Coin...</Header>
                 :
                 <>
-                    <nav>
-                        <Link to={'/'}>
-                            Back to Home
+                    <Link to={'/'}>
+                        <Back src={backImg}/>
+                    </Link>
+                    <CoinImg src={`https://cryptoicon-api.vercel.app/api/icon/${info?.symbol.toLowerCase()}`}
+                             alt={'Crypto Icon'}/>
+                    <CoinName>{info?.name}</CoinName>
+                    <ContentWrapper>
+                        <ContentBox>
+                            <Content fontSize={'27px'}>price</Content>
+                            <Content fontSize={'21px'}>$ {detail?.quotes.USD.price.toFixed(3)}</Content>
+                        </ContentBox><ContentBox>
+                        <Content fontSize={'27px'}>supplied</Content>
+                        <Content fontSize={'20px'}>{detail?.total_supply}
+                            <br/>/{detail ? detail.max_supply !== 0 ? detail.max_supply : `unlimited` : null}</Content>
+                    </ContentBox>
+                    </ContentWrapper>
+                    <ContentWrapper>
+                        <Content
+                            fontSize={'18px'}>
+                            {info?.description.slice(0, 200)}
+                            {info ? info.description.length > 200 ? '...' : '' : null}
+                            {info ? info.description.length < 1 ? 'No Description' : '' : null}
+                        </Content>
+                    </ContentWrapper>
+                    <Tabs>
+                        <Link to={'chart'}>
+                            <Tab isTapped={currentLocation.pathname === `/${coinId}/chart`}>
+                                Chart
+                            </Tab>
                         </Link>
-                    </nav>
-                    <img src={`https://cryptoicon-api.vercel.app/api/icon/${info?.symbol.toLowerCase()}`}
-                         alt={'Crypto Icon'}/>
-                    <ul>
-                        <li>name: {info?.name}</li>
-                        <li>price: $ {detail?.quotes.USD.price.toFixed(3)}</li>
-                        <li>first_data_at: {detail?.first_data_at}</li>
-                        <li>last_updated: {detail?.last_updated}</li>
-                        <li>supplied: {detail?.total_supply} / {detail?.max_supply} coins</li>
-                        <li>tags: {info?.tags.map(tag => tag.name + ' ')}</li>
-                        <li>link: {info?.links.explorer[0]}</li>
-                        <li>development_status: {info?.development_status}</li>
-                        <li>description: {info?.description}</li>
-                    </ul>
-                    <nav>
-                        <li>
-                            <Link to={`chart`}>
-                                click here and show chart
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={''}>
-                                click here to close chart
-                            </Link>
-                        </li>
-                    </nav>
-
+                        <Link to={'moreDetails'}>
+                            <Tab isTapped={currentLocation.pathname === `/${coinId}/moreDetails`}>
+                                More details
+                            </Tab>
+                        </Link>
+                    </Tabs>
                     <Routes>
-                        <Route path={`chart`} element={<Chart coinId={coinId}/>}/>
+                        <Route path={`chart`} element={<ContentWrapper><Chart coinId={coinId}/></ContentWrapper>}/>
+                        <Route path={`moreDetails`} element={<MoreDetails/>}/>
                     </Routes>
                 </>
             }
-        </>
+        </Wrapper>
     );
+
+    function MoreDetails() {
+        return (
+            <>
+                <ContentWrapper>
+                    <ContentBox>
+                        <Content fontSize={'27px'}>started at</Content>
+                        <Content fontSize={'21px'}>{detail ? detail.first_data_at : 'No data'}</Content>
+                    </ContentBox><ContentBox>
+                    <Content fontSize={'27px'}>last updated</Content>
+                    <Content fontSize={'20px'}>{detail ? detail.last_updated : 'No data'}</Content>
+                </ContentBox>
+                </ContentWrapper>
+                <ContentWrapper>
+                    <ContentBox>
+                        <Content fontSize={'27px'}>Dev status</Content>
+                        <Content
+                            fontSize={'21px'}>{info ? info.development_status === '' ? info.development_status : 'No data' : null}
+                        </Content>
+                    </ContentBox>
+                    <ContentBox>
+                        <Content fontSize={'27px'}>Proof Type</Content>
+                        <Content
+                            fontSize={'20px'}>{info ? info.proof_type === '' ? info.proof_type : 'No data' : null}</Content>
+                    </ContentBox>
+                </ContentWrapper>
+            </>
+        )
+    }
 }
+
 
 export default Detail

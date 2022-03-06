@@ -1,12 +1,11 @@
 # Coin Tracker
 
 ## Table of Contents
+
 - [Languages](#languages)
 - [Frameworks](#frameworks)
 - [APIs](#apis)
     - [coinpaprika](#coinpaprika)
-
-
 
 ## Languages
 
@@ -19,11 +18,12 @@
 
 [![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black)](https://reactjs.org/)
 
-## Packages
+## Notable Packages
 
 [![styled-components](https://img.shields.io/badge/ReactQuery-FF4154?style=for-the-badge&logo=ReactQuery&logoColor=white)](https://styled-components.com/)
 [![React Query](https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)](https://react-query.tanstack.com/)
 [![ApexCharts.js](https://img.shields.io/badge/ApexCharts.js-0F7AEB?style=for-the-badge&logo=ApexCharts.js&logoColor=white)](https://apexcharts.com/)
+[![ReactHelmet](https://img.shields.io/badge/ReactHelmet-2FBCD9?style=for-the-badge&logo=ApexCharts.js&logoColor=white)](https://apexcharts.com/)
 
 ## APIs
 
