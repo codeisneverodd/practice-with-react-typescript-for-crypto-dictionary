@@ -2,7 +2,7 @@ import React from 'react';
 import {createGlobalStyle, ThemeProvider} from "styled-components";
 import Router from "./Router";
 import {Helmet, HelmetProvider} from "react-helmet-async"
-import {darkTheme} from "./theme";
+import {darkTheme} from "./styles/theme";
 
 function App() {
     return (
