@@ -20,6 +20,11 @@ const Wrapper = styled.div`
   margin: 10px;
   background-color: #FFFFFF12;
   border-radius: 13px;
+
+  &:hover {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
 `
 const CoinImg = styled.img`
   display: block;
@@ -30,6 +35,7 @@ const CoinImg = styled.img`
 const Symbol = styled.div`
   font-size: 19px;
   text-align: center;
+  color: inherit;
 `
 
 function Coin({id, symbol}: ICoin) {
