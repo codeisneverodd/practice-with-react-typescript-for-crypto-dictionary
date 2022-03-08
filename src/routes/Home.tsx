@@ -59,9 +59,7 @@ function Home() {
                 <>
                     <Header>Coin Dictionary</Header>
                     <Coins>
-                        {data?.slice(0, counts).map(coin =>
-                            <Coin key={coin.id} id={coin.id} name={coin.name} rank={coin.rank} symbol={coin.symbol}
-                                  is_active={coin.is_active} type={coin.type} is_new={coin.is_new}/>)}
+                        {data?.slice(0, counts).map(coin => <Coin {...coin}/>)}
                     </Coins>
                     {enable ? <LoadMore onClick={onClick}> Load More</LoadMore> : 'No More Coins Available'}
                 </>
