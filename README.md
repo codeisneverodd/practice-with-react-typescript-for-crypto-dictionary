@@ -1,5 +1,6 @@
 # Crypto Dictionary
-[![crypto-dictionary-github](https://user-images.githubusercontent.com/54318460/156914902-54ffa822-d94e-4661-baea-ae7084298b48.png)](https://codeisneverodd.github.io/practice-with-react-typescript-for-crypto-dictionary/)
+[![crypto-dictionary-thumbnail](https://user-images.githubusercontent.com/54318460/157241370-13a438b2-9a57-4203-9105-f4b756a36a3f.png)](https://codeisneverodd.github.io/practice-with-react-typescript-for-crypto-dictionary/)
+
 
 
 ## Table of Contents
