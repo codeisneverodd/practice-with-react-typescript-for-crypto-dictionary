@@ -42,6 +42,9 @@
 [![ApexCharts.js](https://img.shields.io/badge/ApexCharts.js-0F7AEB?style=for-the-badge&logo=ApexCharts.js&logoColor=white)](https://apexcharts.com/)
 [![ReactHelmet](https://img.shields.io/badge/ReactHelmet-2FBCD9?style=for-the-badge&logo=ApexCharts.js&logoColor=white)](https://apexcharts.com/)
 
+## Design Tools
+[![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white)](https://www.figma.com/)
+
 ## APIs
 
 ### coinpaprika
