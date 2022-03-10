@@ -7,6 +7,7 @@
 
 - [Languages](#languages)
 - [Frameworks](#frameworks)
+- [Design Tools](#design-tools)
 - [APIs](#apis)
     - [coinpaprika](#coinpaprika)
 - [Guides](#guides)
