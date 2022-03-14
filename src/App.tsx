@@ -17,10 +17,6 @@ function App() {
                         <link
                             href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&family=Sirin+Stencil&display=swap"
                             rel="stylesheet"/>
-                        <meta property="og:image"
-                              content="https://user-images.githubusercontent.com/54318460/157589231-f21fe1b0-c57f-4ef0-8c4e-0a108529d067.png"/>
-                        <meta property="og:description"
-                              content="🔭 Explore 30,000+ cryptos with their real-time price, chart, supplied amount, and more!!"/>
                     </Helmet>
                 </HelmetProvider>
                 <Router/>
