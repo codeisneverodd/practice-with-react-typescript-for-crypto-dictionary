@@ -1,5 +1,5 @@
 # Crypto Dictionary
-[![crypto-dictionary-thumbnail](https://user-images.githubusercontent.com/54318460/157589231-f21fe1b0-c57f-4ef0-8c4e-0a108529d067.png)](https://codeisneverodd.github.io/practice-with-react-typescript-for-crypto-dictionary/)
+[![thumbnail-crypto-dictionary](https://user-images.githubusercontent.com/54318460/158707664-f4b1a1b3-041d-4525-be79-e71ce125ee19.png)](https://codeisneverodd.github.io/practice-with-react-typescript-for-crypto-dictionary/)
 
 
 
